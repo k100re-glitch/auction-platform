@@ -13,14 +13,17 @@ const AdminDashboard = () => {
     imageUrl: ''
   });
 
+  const API_URL = process.env.REACT_APP_API_URL || process.env.REACT_APP_SOCKET_URL || '';
+
   useEffect(() => {
     fetchAuctions();
   }, []);
 
   const fetchAuctions = async () => {
     try {
-      const response = await axios.get('/api/auctions');
-      setAuctions(response.data);
+      const response = await axios.get(`${API_URL}/api/auctions`);
+      const data = Array.isArray(response.data) ? response.data : [];
+      setAuctions(data);
     } catch (error) {
       console.error('Erreur lors du chargement des enchères:', error);
     }
@@ -29,8 +32,8 @@ const AdminDashboard = () => {
   const createAuction = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/auctions', newAuction);
-      setAuctions([...auctions, response.data]);
+      const response = await axios.post(`${API_URL}/api/auctions`, newAuction);
+      setAuctions([...(Array.isArray(auctions) ? auctions : []), response.data]);
       setNewAuction({ title: '', description: '', startingPrice: '', imageUrl: '' });
       setShowCreateForm(false);
     } catch (error) {
@@ -40,7 +43,7 @@ const AdminDashboard = () => {
 
   const startAuction = async (auctionId) => {
     try {
-      await axios.post(`/api/auctions/${auctionId}/start`);
+      await axios.post(`${API_URL}/api/auctions/${auctionId}/start`);
       fetchAuctions();
     } catch (error) {
       console.error('Erreur lors du démarrage:', error);
@@ -49,7 +52,7 @@ const AdminDashboard = () => {
 
   const finishAuction = async (auctionId) => {
     try {
-      await axios.post(`/api/auctions/${auctionId}/finish`);
+      await axios.post(`${API_URL}/api/auctions/${auctionId}/finish`);
       fetchAuctions();
     } catch (error) {
       console.error('Erreur lors de la fin:', error);
@@ -140,7 +143,7 @@ const AdminDashboard = () => {
       </div>
 
       <div className="grid">
-        {auctions.map(auction => (
+        {(Array.isArray(auctions) ? auctions : []).map(auction => (
           <div key={auction.id} className="card">
             <h3>{auction.title}</h3>
             <p><strong>Description:</strong> {auction.description}</p>

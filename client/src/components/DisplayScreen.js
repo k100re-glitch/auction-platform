@@ -8,6 +8,7 @@ const DisplayScreen = () => {
   const [auction, setAuction] = useState(null);
   const [socket, setSocket] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
+  const API_URL = process.env.REACT_APP_API_URL || process.env.REACT_APP_SOCKET_URL || '';
 
   useEffect(() => {
     fetchAuction();
@@ -23,7 +24,7 @@ const DisplayScreen = () => {
 
   const fetchAuction = async () => {
     try {
-      const response = await axios.get(`/api/auctions/${auctionId}`);
+      const response = await axios.get(`${API_URL}/api/auctions/${auctionId}`);
       setAuction(response.data);
     } catch (error) {
       console.error('Erreur lors du chargement de l\'enchère:', error);
