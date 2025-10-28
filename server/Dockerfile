@@ -15,4 +15,4 @@ COPY . .
 EXPOSE 5001
 
 # Commande de démarrage
-CMD ["npm", "start"]
+CMD ["node", "index.js"]
