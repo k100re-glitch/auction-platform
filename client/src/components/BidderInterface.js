@@ -21,6 +21,7 @@ const BidderInterface = () => {
         socket.disconnect();
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auctionId]);
 
   const fetchAuction = async () => {

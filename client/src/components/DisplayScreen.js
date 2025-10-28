@@ -18,6 +18,7 @@ const DisplayScreen = () => {
         socket.disconnect();
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auctionId]);
 
   const fetchAuction = async () => {
@@ -265,7 +266,6 @@ const DisplayScreen = () => {
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  padding: '15px 0',
                   borderBottom: index < auction.bids.slice(-10).length - 1 ? '1px solid rgba(255,255,255,0.2)' : 'none',
                   backgroundColor: index === 0 ? 'rgba(40, 167, 69, 0.2)' : 'transparent',
                   borderRadius: index === 0 ? '5px' : '0',
