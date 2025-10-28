@@ -2,12 +2,17 @@ FROM node:18-alpine
 
 WORKDIR /app
 
+# Copier les fichiers package
 COPY package*.json ./
 
-RUN npm install --production
+# Installer les dépendances
+RUN npm install
 
+# Copier le code source
 COPY . .
 
+# Exposer le port
 EXPOSE 5001
 
+# Commande de démarrage
 CMD ["npm", "start"]
