@@ -15,6 +15,18 @@
       "dest": "/static/$1"
     },
     {
+      "src": "/display/(.*)",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/bid/(.*)",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/admin",
+      "dest": "/index.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
