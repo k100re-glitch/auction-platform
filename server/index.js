@@ -84,6 +84,7 @@ app.post('/api/auctions', async (req, res) => {
   
   // Générer le QR code
   const qrData = `${FRONTEND_URL}/bid/${auctionId}`;
+  console.log('QR Code URL:', qrData); // Debug
   auction.qrCodeUrl = await QRCode.toDataURL(qrData);
   
   auctions.set(auctionId, auction);
