@@ -28,6 +28,7 @@ const DisplayScreen = () => {
       setAuction(response.data);
     } catch (error) {
       console.error('Erreur lors du chargement de l\'enchère:', error);
+      setAuction(null);
     }
   };
 

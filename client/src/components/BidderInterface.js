@@ -30,6 +30,7 @@ const BidderInterface = () => {
       const response = await axios.get(`${API_URL}/api/auctions/${auctionId}`);
       setAuction(response.data);
     } catch (error) {
+      console.error('Erreur lors du chargement de l\'enchère:', error);
       setError('Enchère non trouvée');
     }
   };
