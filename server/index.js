@@ -5,6 +5,9 @@ const cors = require('cors');
 const { v4: uuidv4 } = require('uuid');
 const QRCode = require('qrcode');
 
+const PORT = process.env.PORT || 5001;
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';
+
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
@@ -153,9 +156,6 @@ io.on('connection', (socket) => {
     console.log('Utilisateur déconnecté:', socket.id);
   });
 });
-
-const PORT = process.env.PORT || 5001;
-const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';
 
 // Ajouter un endpoint de test
 app.get('/', (req, res) => {
