@@ -156,6 +156,15 @@ io.on('connection', (socket) => {
 
 const PORT = process.env.PORT || 5001;
 const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';
+
+// Ajouter un endpoint de test
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'Serveur d\'enchères démarré avec succès!',
+    status: 'running',
+    timestamp: new Date().toISOString()
+  });
+});
 server.listen(PORT, () => {
   console.log(`Serveur démarré sur le port ${PORT}`);
 });
